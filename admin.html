@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Blog | Coenel-DE</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body class="blog-page admin-page">
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="admin-brand" href="index.html">
+        <img src="assets/img/Coenel_logo_Transparente_Site.png" alt="Coenel-DE">
+        <span>Painel do blog</span>
+      </a>
+      <a class="admin-public-link" href="noticias.html"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Ver blog</a>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="container">
+      <section id="admin-login" class="admin-login-card">
+        <span class="blog-eyebrow">Área restrita</span>
+        <h1>Acesso do administrador</h1>
+        <p>Entre com o e-mail convidado para administrar as notícias da Coenel-DE.</p>
+        <div id="admin-login-message" class="admin-message" role="alert" hidden></div>
+        <form id="admin-login-form">
+          <label for="admin-email">E-mail</label>
+          <input id="admin-email" name="email" type="email" autocomplete="username" required>
+          <label for="admin-password">Senha</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+          <button class="admin-button" type="submit">Entrar <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+        </form>
+        <a class="admin-back-link" href="noticias.html">Voltar para notícias</a>
+      </section>
+
+      <section id="admin-dashboard" class="admin-dashboard" hidden>
+        <div class="admin-dashboard-heading">
+          <div>
+            <span class="blog-eyebrow">Conteúdo Coenel-DE</span>
+            <h1>Gerenciar publicações</h1>
+            <p>Crie rascunhos, publique notícias e atualize os conteúdos existentes.</p>
+          </div>
+          <div class="admin-account-actions">
+            <details class="admin-password-details">
+              <summary>Definir senha</summary>
+              <form id="admin-password-form">
+                <label for="admin-new-password">Nova senha</label>
+                <input id="admin-new-password" name="password" type="password" minlength="12" autocomplete="new-password" required>
+                <label for="admin-confirm-password">Confirmar senha</label>
+                <input id="admin-confirm-password" name="confirm_password" type="password" minlength="12" autocomplete="new-password" required>
+                <button class="admin-button" type="submit">Atualizar senha</button>
+              </form>
+            </details>
+            <button id="admin-signout" class="admin-button admin-button-secondary" type="button">Sair</button>
+          </div>
+        </div>
+
+        <div id="admin-dashboard-message" class="admin-message" role="status" aria-live="polite" hidden></div>
+
+        <div class="admin-layout">
+          <section class="admin-editor-card" aria-labelledby="editor-heading">
+            <div class="admin-card-heading">
+              <div>
+                <span class="admin-card-kicker">Editor</span>
+                <h2 id="editor-heading">Nova publicação</h2>
+              </div>
+              <button id="admin-reset" class="admin-text-button" type="button">Limpar</button>
+            </div>
+            <form id="admin-post-form">
+              <input id="post-id" name="id" type="hidden">
+              <label for="post-title">Título</label>
+              <input id="post-title" name="title" type="text" maxlength="180" required>
+
+              <label for="post-slug">Endereço do artigo</label>
+              <div class="admin-slug-field">
+                <span>noticias.html?slug=</span>
+                <input id="post-slug" name="slug" type="text" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" maxlength="180" required>
+              </div>
+
+              <div class="admin-form-row">
+                <div>
+                  <label for="post-category">Categoria</label>
+                  <input id="post-category" name="category" type="text" maxlength="60" value="Geral" required>
+                </div>
+                <div>
+                  <label for="post-status">Publicação</label>
+                  <select id="post-status" name="status">
+                    <option value="draft">Rascunho</option>
+                    <option value="published">Publicado</option>
+                  </select>
+                </div>
+              </div>
+
+              <label for="post-excerpt">Resumo</label>
+              <textarea id="post-excerpt" name="excerpt" rows="3" maxlength="300" placeholder="Uma apresentação breve para o cartão do blog."></textarea>
+
+              <label for="post-content">Texto do artigo</label>
+              <textarea id="post-content" name="content" rows="10" placeholder="Separe os parágrafos com uma linha em branco." required></textarea>
+
+              <label for="post-image-url">Imagem de capa (URL opcional)</label>
+              <input id="post-image-url" name="image_url" type="url" placeholder="https://...">
+
+              <label for="post-image-file">Ou envie uma imagem</label>
+              <input id="post-image-file" name="image_file" type="file" accept="image/jpeg,image/png,image/webp">
+              <small>JPG, PNG ou WebP · até 5 MB</small>
+
+              <button id="admin-save" class="admin-button" type="submit">Salvar publicação</button>
+            </form>
+          </section>
+
+          <section class="admin-posts-card" aria-labelledby="posts-heading">
+            <div class="admin-card-heading">
+              <div>
+                <span class="admin-card-kicker">Biblioteca</span>
+                <h2 id="posts-heading">Publicações</h2>
+              </div>
+              <button id="admin-refresh" class="admin-icon-button" type="button" aria-label="Atualizar publicações" title="Atualizar">
+                <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div id="admin-post-list" class="admin-post-list">
+              <p class="admin-list-empty">Carregando publicações...</p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>
